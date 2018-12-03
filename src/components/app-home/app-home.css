@@ -1,0 +1,75 @@
+#startRecordingButton {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 4.2em;
+  width: 4.2em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#buttonBlock {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 2em;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border: solid white 1px;
+  margin: 1.2em;
+  border-radius: 12px;
+  padding: 1.2em;
+}
+
+li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--app-text-color);
+}
+
+li p {
+  font-size: 14px;
+  color: var(--app-text-color);
+  margin: 0;
+}
+
+@media(min-width: 1000px) {
+  ul {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+}
+
+@media(min-width: 1200px) {
+  ul {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 12em;
+    margin-right: 12em;
+  }
+}

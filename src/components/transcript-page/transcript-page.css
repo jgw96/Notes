@@ -1,0 +1,53 @@
+#wrapper {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+#shareButton {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 4.2em;
+  width: 4.2em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+h2 {
+  margin-bottom: 0;
+  color: var(--app-text-color);
+}
+
+p {
+  font-size: 14px;
+  color: var(--app-text-color);
+  margin: 0;
+}
+
+audio {
+  margin-top: 1.6em;
+}
+
+#backButtonBlock {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#backButtonBlock #backButton {
+  border: none;
+  background: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}

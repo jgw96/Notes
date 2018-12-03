@@ -1,0 +1,79 @@
+#wrapper {
+  padding: 12px;
+}
+
+#status {
+  position: fixed;
+  bottom: 2em;
+  left: 16px;
+  color: var(--app-primary-color);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+#titleInput {
+  color: var(--app-primary-color);
+  border: solid 1px;
+  font-size: 1.2em;
+  padding: 0.6em;
+  border-radius: 8px;
+}
+
+#saveButton {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 4.2em;
+  width: 4.2em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#stopButton {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 4.2em;
+  width: 4.2em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#recordingText {
+  text-align: center;
+  margin-top: 1.4em;
+  color: var(--app-text-color);
+}
+
+#audioBlock {
+  margin-top: 1.4em;
+}
+
+#backButtonBlock {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#backButtonBlock #backButton {
+  border: none;
+  background: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
