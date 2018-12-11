@@ -32,18 +32,6 @@ export class TranscriptPage {
     this.transcript = recording;
   }
 
-  share() {
-    if ((navigator as any).share) {
-      (navigator as any).share({
-        title: 'Notes',
-        text: 'Check out this new note I took',
-        url: location.href,
-      })
-        .then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
-    }
-  }
-
   back() {
     this.history.goBack();
   }
@@ -64,9 +52,7 @@ export class TranscriptPage {
 
         <audio controls src={this.transcript ? window.URL.createObjectURL(this.transcript.note) : null}></audio>
 
-        <button onClick={() => this.share()} id='shareButton'>
-          <img src='/assets/share.svg' alt='share button'></img>
-        </button>
+        <textarea>{this.transcript ? this.transcript.transcript : 'loading...'}</textarea>
       </div>
     ];
   }

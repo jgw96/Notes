@@ -77,3 +77,19 @@
   align-items: center;
   outline: none;
 }
+
+#audioBlock textarea {
+  border-radius: 10px;
+  border: none;
+  padding: 1em;
+  max-height: 20em;
+  margin-top: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#audioBlock #transcriptBlock h3 {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 0;
+}

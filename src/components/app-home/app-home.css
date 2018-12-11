@@ -25,6 +25,7 @@
 h2 {
   text-align: center;
   margin-top: 2em;
+  color: var(--app-text-color);
 }
 
 ul {

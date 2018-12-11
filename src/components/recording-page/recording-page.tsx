@@ -14,7 +14,7 @@ export class RecordingPage {
 
   @Prop() history: RouterHistory;
 
-  @State() transcript: string = 'waiting...';
+  @State() transcript: string | null = null;
   @State() recording: boolean = true;
 
   textInput: HTMLInputElement;
@@ -23,6 +23,7 @@ export class RecordingPage {
   chunks: any[] = [];
   audioEl: HTMLAudioElement;
   audioBlob: Blob;
+  recogs: any[] = [];
 
   async componentDidLoad() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -38,12 +39,13 @@ export class RecordingPage {
         if ('requestIdleCallback' in window) {
           (window as any).requestIdleCallback(() => {
             this.recorder.start();
+            this.doSpeechRecog();
             this.recording = true;
           });
         }
         else {
           this.recorder.start();
-
+          this.doSpeechRecog();
           this.recording = true;
         }
       } catch (err) {
@@ -52,6 +54,17 @@ export class RecordingPage {
     }
 
     this.handleEvents();
+  }
+
+  doSpeechRecog() {
+    (window as any).annyang.start();
+
+    (window as any).annyang.addCallback('result', (phrases) => {
+      console.log(phrases);
+      console.log(phrases[0]);
+
+      this.recogs.push(phrases[0]);
+    });
   }
 
   handleEvents() {
@@ -71,6 +84,12 @@ export class RecordingPage {
         const url = window.URL.createObjectURL(this.audioBlob);
         console.log(url);
         this.audioEl.src = url;
+
+        if (this.recogs.length > 0) {
+          this.transcript = this.recogs.join('.');
+        } else {
+          this.transcript = 'No transcript'
+        }
       }, 300);
 
     }
@@ -78,6 +97,7 @@ export class RecordingPage {
 
   stop() {
     this.recorder.stop();
+    console.log(this.recogs);
   }
 
   async save() {
@@ -87,6 +107,7 @@ export class RecordingPage {
     const newRecording = {
       id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
       title: this.textInput.value,
+      transcript: this.transcript,
       note: this.audioBlob,
       date: new Intl.DateTimeFormat('en-US').format(new Date()),
     }
@@ -95,11 +116,13 @@ export class RecordingPage {
       (recordings as any[]).push(newRecording);
       await set('recordings', recordings);
 
+      (window as any).annyang.abort();
       this.history.goBack();
     } else {
       const newRecordings = [newRecording];
       await set('recordings', newRecordings);
 
+      (window as any).annyang.abort();
       this.history.goBack();
     }
   }
@@ -119,16 +142,16 @@ export class RecordingPage {
       </app-header>,
 
       <div id='wrapper'>
-        <input id='titleInput' type='text' ref={(el) => this.textInput = el as HTMLInputElement} placeholder='title...'></input>
+        <input id='titleInput' type='text' ref={(el) => this.textInput = el as HTMLInputElement} placeholder='Default Title'></input>
 
         {!this.recording ? <div id='audioBlock'>
           <audio controls ref={(el) => this.audioEl = el as HTMLAudioElement}></audio>
-        </div> : <h2 id='recordingText'>Recording...</h2>}
 
-        {/*<div id='transcriptBlock'>
-          <h3>Transcript</h3>
-          <p id='transcript'>{this.transcript ? this.transcript : null}</p>
-    </div>*/}
+          <div id='transcriptBlock'>
+            <h3>Transcript</h3>
+            <textarea>{this.transcript}</textarea>
+          </div>
+        </div> : <h2 id='recordingText'>Recording...</h2>}
 
         {this.recording ?
           <button id='stopButton' onClick={() => this.stop()}>

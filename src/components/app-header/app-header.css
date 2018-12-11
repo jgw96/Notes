@@ -5,6 +5,31 @@ header {
   align-items: center;
   position: sticky;
   top: 0;
+  background: var(--app-primary-color);
+  justify-content: space-between;
+}
+
+#loginBlock {
+  margin-right: 22px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#loginBlock button {
+  border: none;
+  color: white;
+  background: var(--app-primary-color);
+  font-weight: bold;
+  text-transform: lowercase;
+  font-size: 16px;
+}
+
+#loginBlock img {
+  border-radius: 50%;
+  height: 2.6em;
+  width: 2.6em;
+  background: lightgrey;
 }
 
 h1 {
@@ -13,3 +38,32 @@ h1 {
   color: white;
   padding: 0 12px;
 }
+
+#dropdown {
+  background: white;
+  animation-name: dropdown;
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  position: absolute;
+  top: 51px;
+  right: 26px;
+  padding: 1em;
+  transform-origin: top right;
+  border-radius: 5px;
+}
+
+@keyframes dropdown {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
