@@ -1,5 +1,6 @@
 import { Component } from '@stencil/core';
 
+import '@ionic/core';
 
 @Component({
   tag: 'app-root',

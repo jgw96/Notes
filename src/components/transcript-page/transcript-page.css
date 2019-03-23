@@ -61,3 +61,15 @@ textarea {
   max-height: 20em;
   padding: 1em;
 }
+
+#wrapper p{
+  margin-top: 14px;
+  margin-bottom: 2em;
+}
+
+@media(min-width: 1200px) {
+  #wrapper {
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}

@@ -71,14 +71,18 @@ export class AppHeader {
   render() {
     return [
       <header>
-        <slot></slot>
-        <h1>Audio Notes</h1>
+        <slot>
+        </slot>
+
+        <h1>Notes</h1>
 
         <div id='loginBlock'>
           {
             this.loggedIn ?
-              <img onClick={() => this.openDrop = !this.openDrop} ref={(el) => this.imageEl = el as HTMLImageElement} alt='user photo' src={this.profilePhoto ? this.profilePhoto : null}></img>
-              : <button onClick={() => this.login()}>Login</button>
+              <img id="userImage" onClick={() => this.openDrop = !this.openDrop} ref={(el) => this.imageEl = el as HTMLImageElement} alt='user photo' src={this.profilePhoto ? this.profilePhoto : null}></img>
+              : <button onClick={() => this.login()}>
+                <img src="/assets/login.svg" alt='login button image'></img>
+              </button>
           }
         </div>
 

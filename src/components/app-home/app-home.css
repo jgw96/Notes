@@ -1,13 +1,10 @@
 #startRecordingButton {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
   height: 4.2em;
   width: 4.2em;
   display: flex;
   justify-content: center;
   text-align: center;
-  background: white;
+  background: #424242;
   border: none;
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -20,6 +17,13 @@
   right: 0;
   display: flex;
   justify-content: center;
+}
+
+#titleDiv {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 14em;
 }
 
 h2 {
@@ -35,28 +39,46 @@ ul {
 }
 
 li {
-  border: solid white 1px;
+  border-bottom: solid #424242 1px;
   margin: 1.2em;
-  border-radius: 12px;
-  padding: 1.2em;
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-li a {
+a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 li h4 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   margin: 0;
+  margin-bottom: 12px;
   color: var(--app-text-color);
 }
 
+
 li p {
   font-size: 14px;
-  color: var(--app-text-color);
+  color: grey;
   margin: 0;
+}
+
+#deleteButton {
+  background: none;
+  border: none;
+}
+
+#actionButtonDiv {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 16px;
 }
 
 @media(min-width: 1000px) {

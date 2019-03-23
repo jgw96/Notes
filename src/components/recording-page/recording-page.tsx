@@ -39,13 +39,11 @@ export class RecordingPage {
         if ('requestIdleCallback' in window) {
           (window as any).requestIdleCallback(() => {
             this.recorder.start();
-            this.doSpeechRecog();
             this.recording = true;
           });
         }
         else {
           this.recorder.start();
-          this.doSpeechRecog();
           this.recording = true;
         }
       } catch (err) {
@@ -54,17 +52,6 @@ export class RecordingPage {
     }
 
     this.handleEvents();
-  }
-
-  doSpeechRecog() {
-    (window as any).annyang.start();
-
-    (window as any).annyang.addCallback('result', (phrases) => {
-      console.log(phrases);
-      console.log(phrases[0]);
-
-      this.recogs.push(phrases[0]);
-    });
   }
 
   handleEvents() {
@@ -79,11 +66,14 @@ export class RecordingPage {
 
       setTimeout(() => {
         this.audioBlob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' });
-        this.chunks = [];
+
+        // this.chunks = [];
 
         const url = window.URL.createObjectURL(this.audioBlob);
         console.log(url);
         this.audioEl.src = url;
+
+        console.log(this.recogs);
 
         if (this.recogs.length > 0) {
           this.transcript = this.recogs.join('.');
@@ -103,6 +93,8 @@ export class RecordingPage {
   async save() {
     console.log(this.textInput.value);
     const recordings = await get('recordings');
+    console.log(this.chunks);
+
 
     const newRecording = {
       id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
@@ -116,13 +108,11 @@ export class RecordingPage {
       (recordings as any[]).push(newRecording);
       await set('recordings', recordings);
 
-      (window as any).annyang.abort();
       this.history.goBack();
     } else {
       const newRecordings = [newRecording];
       await set('recordings', newRecordings);
 
-      (window as any).annyang.abort();
       this.history.goBack();
     }
   }

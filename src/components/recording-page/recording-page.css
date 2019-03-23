@@ -93,3 +93,10 @@
   font-size: 2em;
   margin-bottom: 0;
 }
+
+@media(min-width: 1200px) {
+  #wrapper {
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
